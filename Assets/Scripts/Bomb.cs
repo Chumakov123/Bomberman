@@ -23,5 +23,50 @@ public class Bomb : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        for (int direction = 0; direction < 4; ++direction)
+        {
+            for (int i = 0; i < explosionRange; ++i)
+            {
+                Collider[] colliders = Physics.OverlapSphere(transform.position + GetDirectionVector(direction) * 4 * (i + 1), 1f);
+                bool collisionWithWall = false;
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.gameObject.tag == "Wall")
+                    {
+                        collisionWithWall = true;
+                        break;
+                    }
+                    if (collider.gameObject.tag == "Brick")
+                    {
+                        collisionWithWall = true;
+                        Instantiate(explosionPrefab, transform.position + GetDirectionVector(direction) * 4 * (i + 1), Quaternion.identity);
+                        Destroy(collider.gameObject);
+                        break;
+                    }
+                }
+                if (collisionWithWall)
+                {
+                    break;
+                }
+                Instantiate(explosionPrefab, transform.position + GetDirectionVector(direction) * 4 * (i + 1), Quaternion.identity);
+            }
+        }
+    }
+
+    private Vector3 GetDirectionVector(int direction)
+    {
+        switch (direction)
+        {
+            case 0:
+                return Vector3.forward;
+            case 1:
+                return Vector3.right;
+            case 2:
+                return Vector3.back;
+            case 3:
+                return Vector3.left;
+            default:
+                return Vector3.zero;
+        }
     }
 }
