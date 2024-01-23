@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6766754690572831697}
+  - component: {fileID: 1905989455498713807}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   - {fileID: 8822820503325630478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1905989455498713807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517227707206312301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4347748714d8f1f42ae67eacbc8426c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 6361585263832543009, guid: c64a3b9dc68f9de48bbc2e50b789b012, type: 3}
+  lifeTime: 2
+  explosionRange: 3
 --- !u!1001 &9077653751690201061
 PrefabInstance:
   m_ObjectHideFlags: 0

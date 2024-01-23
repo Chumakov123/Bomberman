@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2885450943735673737}
   - component: {fileID: 6017977398328659540}
   - component: {fileID: 476595711541589942}
+  - component: {fileID: 7750113846370026069}
   m_Layer: 0
   m_Name: Bomberman
   m_TagString: Untagged
@@ -99,6 +100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   turnSpeed: 1000
+--- !u!114 &7750113846370026069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976795346067075495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2e7ce70e1fae24a86f6b21cce7b471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombPrefab: {fileID: 517227707206312301, guid: 5b7ea0cca9d08564f88894ee4589b1b4, type: 3}
+  spawnCooldown: 2
 --- !u!1001 &4813285461166403677
 PrefabInstance:
   m_ObjectHideFlags: 0
