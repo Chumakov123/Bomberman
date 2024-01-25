@@ -8,6 +8,11 @@ public class Bomb : MonoBehaviour
     public float lifeTime = 2f;
     public int explosionRange = 3;
 
+    private void Start()
+    {
+        EventManager.Instance.OnPlayerDead.AddListener(Clear);
+        EventManager.Instance.OnPlayerWin.AddListener(Clear);
+    }
     private void Update()
     {
         if (lifeTime > 0)
@@ -19,8 +24,13 @@ public class Bomb : MonoBehaviour
             Explode();
         }
     }
+    private void Clear()
+    {
+        Destroy(gameObject);
+    }
     private void Explode()
     {
+        EventManager.Instance.OnBombExploded?.Invoke();
         Destroy(gameObject);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         for (int direction = 0; direction < 4; ++direction)
@@ -40,7 +50,6 @@ public class Bomb : MonoBehaviour
                     {
                         collisionWithWall = true;
                         Instantiate(explosionPrefab, transform.position + GetDirectionVector(direction) * 4 * (i + 1), Quaternion.identity);
-                        Destroy(collider.gameObject);
                         break;
                     }
                 }

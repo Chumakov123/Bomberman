@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    private void OnDisable()
+    {
+        rb.velocity = Vector3.zero;
+    }
     void Update()
     {
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

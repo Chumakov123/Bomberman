@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 6012548904533042827}
   - component: {fileID: 2885450943735673737}
   - component: {fileID: 6017977398328659540}
+  - component: {fileID: 6865531446158864839}
   - component: {fileID: 476595711541589942}
   - component: {fileID: 7750113846370026069}
   m_Layer: 0
   m_Name: Bomberman
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +87,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6865531446158864839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976795346067075495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9e47318c9c1d8940b7538477454b5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &476595711541589942
 MonoBehaviour:
   m_ObjectHideFlags: 0
