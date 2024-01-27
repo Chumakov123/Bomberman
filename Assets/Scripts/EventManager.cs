@@ -12,6 +12,7 @@ public class EventManager : MonoBehaviour
     public UnityEvent OnPlayerWin;
     public UnityEvent OnBrickDestroy;
     public UnityEvent OnPlayerMoved;
+    public UnityEvent OnLevelStarted;
     private void Awake()
     {
         if (Instance != null)

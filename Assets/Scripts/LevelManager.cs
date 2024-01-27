@@ -103,18 +103,19 @@ public class LevelManager : MonoBehaviour
         player.DisableControl();
         Overlay.Instance.ShowMessage("Уровень пройден!");
         yield return new WaitForSeconds(1f);
+        EventManager.Instance.OnLevelStarted?.Invoke();
         generator.GenerateBricks();
         player.Respawn();
     }
 
     public void RestartLevel()
     {
-        Debug.Log("RestartLevel");
         StartCoroutine(RestartLevelCoroutine());
     }
     IEnumerator RestartLevelCoroutine()
     {
         yield return new WaitForSeconds(1);
+        EventManager.Instance.OnLevelStarted?.Invoke();
         player.Respawn();
         generator.RespawnBricks();
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1689581837954036335}
   - component: {fileID: 7995155376666901703}
   - component: {fileID: 8499423882470449382}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887a41c3f031f224b9bb26981cdfef09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  turnSpeed: 1000
 --- !u!136 &7995155376666901703
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -78,7 +80,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8830988258711490730}
   serializedVersion: 4
-  m_Mass: 2
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}

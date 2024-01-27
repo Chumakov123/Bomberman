@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : Destructible
 {
+    public UnityEvent<Enemy> OnDeath;
     public float moveSpeed = 8f;
     public float turnSpeed = 1000f;
     private Rigidbody rb;
@@ -77,5 +79,10 @@ public class Enemy : Destructible
         {
             Debug.Log("Путь не найден");
         }
+    }
+    public override void Death()
+    {
+        OnDeath?.Invoke(this);
+        Destroy(gameObject);
     }
 }
