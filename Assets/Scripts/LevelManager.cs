@@ -9,8 +9,9 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
     public LevelGenerator generator;
     public Player player;
+    public Grid grid;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -18,7 +19,15 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            grid = new Grid(generator.levelSize, generator.levelSize);
+            AddWallsToObstaclesMap();
             Instance = this;
+        }
+    }
+    private void Start()
+    {
+        if (Instance == this)
+        {
             EventManager.Instance.OnPlayerDead.AddListener(RestartLevel);
             EventManager.Instance.OnPlayerWin.AddListener(Win);
         }
@@ -29,6 +38,60 @@ public class LevelManager : MonoBehaviour
         {
             Quit();
         }
+#if UNITY_EDITOR
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            Debug.Log("Obstacles Map");
+            for (int i = 0; i < 15; i++)
+            {
+                string row = "";
+                for (int j = 0; j < 15; j++)
+                {
+                    row += grid[i, j].IsObstacle ? "1 " : "0 ";
+                }
+                Debug.Log(row);
+            }
+        }
+#endif
+    }
+    private void AddWallsToObstaclesMap()
+    {
+        var h = grid.Columns;
+        var w = grid.Rows;
+
+        for (int i = 0; i < grid.Columns; i++)
+        {
+            SetObstacle(i,0);
+            SetObstacle(i, grid.Columns - 1);
+        }
+        for (int i = 1; i < grid.Rows - 1; i++)
+        {
+            SetObstacle(0, i);
+            SetObstacle(grid.Rows - 1, i);
+        }
+
+        for (int i = 1; i < grid.Rows - 1; i++)
+        {
+            for (int j = 1; j < grid.Columns - 1; j++)
+            {
+                if (i % 2 == 0 && j % 2 == 0)
+                {
+                    SetObstacle(i,j);
+                }
+            }
+        }
+    }
+    public void SetObstacle(int x, int y)
+    {
+        grid[y, x].SetObstacle();
+    }
+    public void ResetObstacle(int x, int y)
+    {
+        grid[y, x].ResetObstacle();
+    }
+    public (int, int) GetPlayerPos()
+    {
+        return (Mathf.RoundToInt(-player.transform.position.z / 4), Mathf.RoundToInt(player.transform.position.x / 4));
     }
     public void Win()
     {

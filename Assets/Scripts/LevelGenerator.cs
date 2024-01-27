@@ -35,7 +35,7 @@ public class LevelGenerator : MonoBehaviour
     private GameObject wallsObject;
     private GameObject bricksObject;
 
-    void Awake()
+    void Start()
     {
         GenerateBricks();
     }
@@ -83,14 +83,14 @@ public class LevelGenerator : MonoBehaviour
                     (x+z > 4) &&
                     (x+z < 24))
                 {
-                    availableCells.Add((x, z));
+                    availableCells.Add((z, x));
                 }
             }
         }
         for (int i = 0; i < bricksCount; i++)
         {
             var index = Random.Range(0, availableCells.Count);
-            InstantiateBrick(new Vector3(availableCells[index].Item1, 0, -availableCells[index].Item2) * 4);
+            InstantiateBrick(new Vector3(availableCells[index].Item2, 0, -availableCells[index].Item1) * 4);
             availableCells.RemoveAt(index);
         }
     }

@@ -10,6 +10,8 @@ public class EventManager : MonoBehaviour
     public UnityEvent OnBombExploded;
     public UnityEvent OnPlayerDead;
     public UnityEvent OnPlayerWin;
+    public UnityEvent OnBrickDestroy;
+    public UnityEvent OnPlayerMoved;
     private void Awake()
     {
         if (Instance != null)

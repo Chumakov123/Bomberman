@@ -34,4 +34,12 @@ public class Player : Destructible
         EventManager.Instance.OnPlayerDead?.Invoke();
         gameObject.SetActive(false);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Death();
+        }
+    }
 }
