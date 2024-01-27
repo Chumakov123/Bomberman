@@ -34,6 +34,27 @@ public class Enemy : Destructible
                 ++currentPoint;
             }
         }
+        else
+        {
+            RandomlyMove();
+        }
+    }
+    private void RandomlyMove()
+    {
+        currentPoint = 0;
+        waypoints.Clear();
+        var x = Mathf.RoundToInt(transform.position.x / 4);
+        var y = Mathf.RoundToInt(-transform.position.z / 4);
+        var possibleMoves = new List<PathNode>();
+        foreach (var neighbor in LevelManager.Instance.grid[y,x].Neighbors)
+        {
+            if (!neighbor.IsObstacle)
+            {
+                possibleMoves.Add(neighbor);
+            }
+        }
+        var move = possibleMoves[UnityEngine.Random.Range(0, possibleMoves.Count)];
+        waypoints.Add(new Vector3(move.X, 0, -move.Y) * 4);
     }
     private void UpdatePath()
     {
@@ -50,6 +71,11 @@ public class Enemy : Destructible
             {
                 waypoints.Add(new Vector3(path[i].X * 4, 0, -path[i].Y * 4));
             }
+            Debug.Log("Путь найден");
+        }
+        else
+        {
+            Debug.Log("Путь не найден");
         }
     }
 }
